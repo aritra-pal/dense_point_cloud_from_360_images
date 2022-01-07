@@ -1,0 +1,8 @@
+
+# OpenSfM will use the default parameters from opensfm/config.py
+# Set here any parameter that you want to override for this dataset
+# For example:
+feature_process_size: 4098    # Resize the image if its size is larger than specified. Set to -1 for original size
+feature_min_frames: 16000     # If fewer frames are detected, sift_peak_threshold/surf_hessian_threshold is reduced.
+matching_gps_neighbors: 4     # Number of images to match selected by GPS distance. Set to 0 to use no limit
+processes: 4                  # Number of threads to use
