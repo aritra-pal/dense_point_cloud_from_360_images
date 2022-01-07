@@ -4,6 +4,8 @@ This repository is for creating a dense point cloud from 360 degree equirectangu
 
 This repo is fully based on the open source python codes provided by OpenSfM and Colamp
 
+First a sparse point cloud is created using OpenSfM next the same is densified using colmap.
+
 ## How to use
 
 ### Step 1
