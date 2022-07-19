@@ -472,10 +472,12 @@ def export_images_reconstruction(
         fout = data.io_handler.open_wt(os.path.join(path, "images.txt"))
 
     for reconstruction in reconstructions:
-        
+        #print(sorted(reconstruction.shots.items()))
         for shot_id, shot in sorted(reconstruction.shots.items()): # sorted added by me
+            #print(shot_id)
             colmap_camera_id = camera_map[shot.camera.id]
             colmap_shot_id = images_map[shot_id]
+
             #colmap_shot_id = images_map[shot_id+".jpg"]  #+".jgp added by me"
 
             t = shot.pose.translation
@@ -502,11 +504,14 @@ def export_images_reconstruction(
                 shot_id
                 #shot_id +".jpg",  #+".jgp added by me"
             ]
-
-            point_per_feat = {
-                obs.id: k
-                for k, obs in tracks_manager.get_shot_observations(shot_id).items()
-            }
+            try:                                                        #This error handling block is added by me
+                point_per_feat = {
+                    obs.id: k
+                    for k, obs in tracks_manager.get_shot_observations(shot_id).items()
+                }
+            except Exception as e:
+                print("{} not in track file".format(shot_id))
+                print("Error:{}".format(e))
 
             points_tuple = []
             for feature_id in range(len(features_map[shot_id])):
